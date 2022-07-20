@@ -1,25 +1,43 @@
-export interface Movie {
-   adult: boolean;
-   backdrop_path: string;
-   genre_ids: number[];
-   id: number;
-   original_language: string;
-   original_title: string;
-   overview: string;
-   popularity: number;
-   poster_path: string;
-   release_date: string;
-   title: string;
-   video: boolean;
-   vote_average: number;
-   vote_count: number;
-}
-
-// Define a type for the slice state
-export interface MoviesState {
+export interface HomeState {
    loading: boolean;
-   trending_movies: Movie[];
-   recommended_movies: Movie[];
+   trending: SingleMedia[];
+   recommended: SingleMedia[];
+   searchResults: SingleMedia[];
    trending_error: string;
    recommended_error: string;
+   searchResults_error: string;
+}
+
+export interface TVState {
+   loading: boolean;
+   shows: SingleMedia[];
+   error: string;
+}
+
+export interface MoviesState {
+   loading: boolean;
+   movies: SingleMedia[];
+   error: string;
+}
+
+export interface SingleMedia {
+   adult: boolean | undefined;
+   backdrop_path: string;
+   id: number;
+   name: string | '';
+   title: string | '';
+   original_language: string;
+   original_title: string | '';
+   original_name: string | '';
+   overview: string;
+   poster_path: string;
+   media_type: string | '';
+   genre_ids: number[];
+   popularity: number;
+   first_air_date: string | '';
+   release_date: string | '';
+   video: boolean | '';
+   vote_average: number;
+   vote_count: number;
+   origin_country: string[] | [];
 }

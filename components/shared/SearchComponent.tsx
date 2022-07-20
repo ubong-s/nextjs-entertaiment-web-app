@@ -23,6 +23,7 @@ const SearchComponent: React.FC<SearchProps> = ({
          </label>
          <input
             name={name}
+            id={name}
             placeholder={placeholder}
             type='text'
             value={inputValue}

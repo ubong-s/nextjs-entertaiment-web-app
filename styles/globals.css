@@ -13,6 +13,20 @@ body {
    @apply font-outfit bg-themeBlack text-white;
 }
 
+body::-webkit-scrollbar {
+   width: 0.75em;
+}
+
+body::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+   background-color: darkgrey;
+   border-radius: 10px;
+   /* outline: 1px solid slategrey; */
+}
+
 h1,
 h2,
 h3,
@@ -38,6 +52,7 @@ a {
 .container {
    width: 93%;
    margin: auto;
+   position: relative;
 }
 
 @media screen and (min-width: 1024px) {
@@ -50,7 +65,7 @@ a {
 /* Move/TVList */
 
 .list {
-   @apply grid grid-cols-2 gap-4 pt-4 pb-12 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8;
+   @apply grid grid-cols-2 gap-4 pt-4 pb-12 md:grid-cols-3 md:gap-6  lg:gap-8 xl:grid-cols-4;
 }
 
 /* Movie/TV Card */
@@ -59,11 +74,11 @@ a {
 }
 
 .card_image {
-   @apply rounded-md overflow-hidden;
+   @apply rounded-lg overflow-hidden;
 }
 
 .card_info {
-   @apply text-sm mt-2 flex items-center gap-4 text-themeGrey;
+   @apply text-sm mt-2 flex items-center gap-3 text-themeGrey;
 }
 
 .card_dot {
@@ -77,4 +92,42 @@ a {
 .bookmark-btn {
    background-color: rgba(0, 0, 0, 0.5);
    @apply absolute right-5 top-5 z-10 rounded-full p-2;
+}
+
+.slider-container {
+   grid-template-columns: repeat(5, 100%);
+
+   @apply relative grid gap-8 overflow-x-scroll py-4 w-full;
+}
+
+/* .slider-container::after {
+   content: '';
+
+   @apply absolute top-4 bottom-4 left-0 w-full  rounded-lg bg-transparent overflow-hidden z-10 border-2 border-red-500;
+} */
+
+.slider-container::-webkit-scrollbar {
+   height: 0.5rem;
+}
+
+.slider-container::-webkit-scrollbar-track {
+   /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+   background-color: darkgrey;
+   border-radius: 10px;
+   /* outline: 1px solid slategrey; */
+}
+
+@media screen and (min-width: 768px) {
+   .slider-container {
+      grid-template-columns: repeat(5, 70%);
+   }
+}
+
+@media screen and (min-width: 1024px) {
+   .slider-container {
+      grid-template-columns: repeat(5, 40%);
+   }
 }

@@ -4,7 +4,6 @@ import React from 'react';
 
 const Navbar = () => {
    const router = useRouter();
-   console.log(router);
 
    return (
       <div className='py-6 bg-themeBlueDark lg:px-6 lg:py-8 lg:rounded-2xl lg:h-90vh lg:my-8 lg:sticky lg:top-8'>

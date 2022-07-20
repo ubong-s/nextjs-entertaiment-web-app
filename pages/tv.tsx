@@ -4,18 +4,13 @@ import { useAppDispatch } from '../redux/hooks';
 import { fetchTVShows } from '../redux/features/tv/tvSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import {
-   SearchComponent,
-   TvList,
-   PageTitle,
-   Loading,
-   Error,
-   Seo,
-} from '../components';
+import { SearchComponent, Seo, MoviesList } from '../components';
 
 const TV: NextPage = () => {
    const dispatch = useAppDispatch();
-   const { loading, error } = useSelector((state: RootState) => state.tv);
+   const { loading, error, shows } = useSelector(
+      (state: RootState) => state.tv
+   );
    const [tvInput, setTvInput] = useState('');
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -26,13 +21,6 @@ const TV: NextPage = () => {
       dispatch(fetchTVShows(tvInput));
    }, [tvInput]);
 
-   if (loading) {
-      return <Loading />;
-   }
-   if (error) {
-      return <Error error={error} />;
-   }
-
    return (
       <>
          <Seo title='TV Series' />
@@ -42,8 +30,7 @@ const TV: NextPage = () => {
             placeholder='Search for TV series'
             changeHandler={handleChange}
          />
-         <PageTitle title='TV Series' searchInput={tvInput} />
-         <TvList />
+         <MoviesList items={shows} title='TV Series' searchInput={tvInput} />
       </>
    );
 };

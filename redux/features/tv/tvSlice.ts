@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../../store';
-import { TVShow, TVState } from '../../../types/tv';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { TVState, SingleMedia } from '../../../types';
 
 export const fetchTVShows = createAsyncThunk(
    'tv/fetchTVShows',
@@ -44,7 +43,9 @@ export const tvSlice = createSlice({
             state.loading = false;
 
             if (action.payload.results) {
-               state.shows = action.payload.results;
+               state.shows = action.payload.results.map((item: SingleMedia) => {
+                  return { ...item, media_type: 'TV Series' };
+               });
             } else {
                state.error = 'Error fetching tv shows';
             }

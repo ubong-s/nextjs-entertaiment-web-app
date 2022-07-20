@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { MoviesState } from '../../../types/movie';
+import { MoviesState, SingleMedia } from '../../../types';
 
 export const fetchMovies = createAsyncThunk(
    'movies/fetchMovies',
@@ -44,7 +44,11 @@ export const moviesSlice = createSlice({
             state.loading = false;
 
             if (action.payload.results) {
-               state.movies = action.payload.results;
+               state.movies = action.payload.results.map(
+                  (item: SingleMedia) => {
+                     return { ...item, media_type: 'Movie' };
+                  }
+               );
             } else {
                state.error = 'Error fetching  movies';
             }
