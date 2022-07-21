@@ -1,5 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { updateBookmarks } from '../../redux/features/user/userSlice';
+import { useAppDispatch } from '../../redux/hooks';
+import { RootState } from '../../redux/store';
 import { SingleMedia } from '../../types';
 import PageTitle from '../shared/PageTitle';
 
@@ -8,6 +12,16 @@ interface Props {
 }
 
 const Trending: React.FC<Props> = ({ trending }) => {
+   const dispatch = useAppDispatch();
+   const { bookmarks } = useSelector((state: RootState) => state.user);
+
+   const handleBookmarks =
+      (item: SingleMedia) =>
+      (e: React.MouseEvent): void => {
+         e.preventDefault();
+         dispatch(updateBookmarks(item));
+      };
+
    return (
       <section className='mb-16 '>
          <PageTitle title='Trending' />
@@ -24,9 +38,15 @@ const Trending: React.FC<Props> = ({ trending }) => {
                      poster_path,
                      media_type,
                   } = item;
+                  const bookmarked = bookmarks.find((item) => item.id === id);
+
                   return (
                      <article className='card w-full' key={id}>
-                        <button title='bookmark btn' className='bookmark-btn'>
+                        <button
+                           title='bookmark btn'
+                           className='bookmark-btn'
+                           onClick={handleBookmarks(item)}
+                        >
                            <svg
                               width='12'
                               height='14'
@@ -36,7 +56,7 @@ const Trending: React.FC<Props> = ({ trending }) => {
                                  d='m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z'
                                  stroke='#FFF'
                                  strokeWidth='1.5'
-                                 fill='none'
+                                 fill={bookmarked ? '#fff' : 'none'}
                               />
                            </svg>
                         </button>

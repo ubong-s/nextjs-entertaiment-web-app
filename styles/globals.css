@@ -4,11 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+html {
+   padding: 0;
+   margin: 0;
+}
+
 body {
    padding: 0;
    margin: 0;
-   scroll-behavior: smooth;
+   /* scroll-behavior: smooth;
+   scrollbar-width: thin;
+   scrollbar-color: darkgrey red; */
 
    @apply font-outfit bg-themeBlack text-white;
 }
@@ -56,13 +62,17 @@ a {
 }
 
 @media screen and (min-width: 1024px) {
+   .container {
+      width: 100%;
+   }
+
    .layout-container {
       width: 95%;
       margin: auto;
    }
 }
 
-/* Move/TVList */
+/* MovieTVList/TVList */
 
 .list {
    @apply grid grid-cols-2 gap-4 pt-4 pb-12 md:grid-cols-3 md:gap-6  lg:gap-8 xl:grid-cols-4;
@@ -70,7 +80,7 @@ a {
 
 /* Movie/TV Card */
 .card {
-   @apply relative;
+   @apply relative transition-all;
 }
 
 .card_image {
@@ -94,17 +104,12 @@ a {
    @apply absolute right-5 top-5 z-10 rounded-full p-2;
 }
 
+/* Homepage Slider Start */
 .slider-container {
    grid-template-columns: repeat(5, 100%);
 
    @apply relative grid gap-8 overflow-x-scroll py-4 w-full;
 }
-
-/* .slider-container::after {
-   content: '';
-
-   @apply absolute top-4 bottom-4 left-0 w-full  rounded-lg bg-transparent overflow-hidden z-10 border-2 border-red-500;
-} */
 
 .slider-container::-webkit-scrollbar {
    height: 0.5rem;
@@ -131,3 +136,4 @@ a {
       grid-template-columns: repeat(5, 40%);
    }
 }
+/* Homepage Slider End */

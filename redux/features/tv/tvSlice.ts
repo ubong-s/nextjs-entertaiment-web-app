@@ -44,7 +44,7 @@ export const tvSlice = createSlice({
 
             if (action.payload.results) {
                state.shows = action.payload.results.map((item: SingleMedia) => {
-                  return { ...item, media_type: 'TV Series' };
+                  return { ...item, media_type: 'tv' };
                });
             } else {
                state.error = 'Error fetching tv shows';

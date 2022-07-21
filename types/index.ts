@@ -14,6 +14,11 @@ export interface TVState {
    error: string;
 }
 
+export interface UserState {
+   user: string;
+   bookmarks: SingleMedia[];
+}
+
 export interface MoviesState {
    loading: boolean;
    movies: SingleMedia[];

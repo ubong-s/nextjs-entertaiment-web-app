@@ -46,7 +46,7 @@ export const moviesSlice = createSlice({
             if (action.payload.results) {
                state.movies = action.payload.results.map(
                   (item: SingleMedia) => {
-                     return { ...item, media_type: 'Movie' };
+                     return { ...item, media_type: 'movie' };
                   }
                );
             } else {

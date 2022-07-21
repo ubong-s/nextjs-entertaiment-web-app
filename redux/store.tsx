@@ -2,6 +2,7 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import homeReducer from './features/home/homeSlice';
 import moviesReducer from './features/movies/moviesSlice';
 import tvReducer from './features/tv/tvSlice';
+import userReducer from './features/user/userSlice';
 
 // ...
 
@@ -10,6 +11,7 @@ export const store = configureStore({
       home: homeReducer,
       movies: moviesReducer,
       tv: tvReducer,
+      user: userReducer,
    },
 });
 

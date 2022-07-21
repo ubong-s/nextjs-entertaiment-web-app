@@ -11,7 +11,7 @@ const Seo: React.FC<SeoProps> = ({
 }) => {
    return (
       <Head>
-         <title>{title} | Entertainment</title>
+         <title>{`${title} | Entertainment`}</title>
          <meta name='description' content={description} />
          <link rel='icon' href='/favicon-32x32.png' />
       </Head>

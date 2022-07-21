@@ -11,13 +11,13 @@ const PageTitle: React.FC<TitleProps> = ({
 }) => {
    return (
       <div className='container  '>
-         <h1 className='text-2xl lg:text-3xl mb-2'>
-            {searchLength === 0
-               ? `Found 0 results for '${searchInput}'`
-               : searchInput
-               ? `Found results for '${searchInput}'`
+         <h2 className='text-2xl lg:text-3xl mb-2'>
+            {searchInput
+               ? searchLength === 0
+                  ? `Found 0 results for '${searchInput}'`
+                  : `Found results for '${searchInput}'`
                : title}
-         </h1>
+         </h2>
       </div>
    );
 };
