@@ -7,6 +7,7 @@ import PageTitle from './shared/PageTitle';
 import SearchComponent from './shared/SearchComponent';
 import Seo from './shared/Seo';
 import Trending from './home/Trending';
+import OverviewCast from './movieTvSingle/OverviewCast';
 
 export {
    Trending,
@@ -18,4 +19,5 @@ export {
    Error,
    Loading,
    Seo,
+   OverviewCast,
 };

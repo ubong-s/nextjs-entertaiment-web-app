@@ -19,6 +19,7 @@ const TV: NextPage = () => {
 
    useEffect(() => {
       dispatch(fetchTVShows(tvInput));
+      // eslint-disable-next-line
    }, [tvInput]);
 
    return (

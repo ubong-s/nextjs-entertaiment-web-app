@@ -25,10 +25,12 @@ const Home: NextPage = (props) => {
 
    useEffect(() => {
       dispatch(fetchMedia());
+      // eslint-disable-next-line
    }, []);
 
    useEffect(() => {
       dispatch(fetchSearch(searchMovies));
+      // eslint-disable-next-line
    }, [searchMovies]);
 
    return (
