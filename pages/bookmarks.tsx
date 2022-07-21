@@ -5,6 +5,8 @@ import { MoviesList, SearchComponent, Seo } from '../components';
 import { useAppDispatch } from '../redux/hooks';
 import { RootState } from '../redux/store';
 import { SingleMedia } from '../types';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 
 const Bookmarks: NextPage = () => {
    const dispatch = useAppDispatch();
@@ -47,7 +49,12 @@ const Bookmarks: NextPage = () => {
    }, [searchValue, bookmarks]);
 
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title='Bookmarks' />
          <SearchComponent
             name='bookmark'
@@ -75,7 +82,7 @@ const Bookmarks: NextPage = () => {
                />
             </>
          )}
-      </>
+      </motion.div>
    );
 };
 

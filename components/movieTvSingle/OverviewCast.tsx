@@ -56,7 +56,7 @@ const OverviewCast = ({ movie, cast }: Props) => {
 
             {/* Overview Section */}
             <div className='col-span-2 '>
-               <div className='flex flex-col gap-4 items-start'>
+               <div className='flex flex-col gap-5 items-start'>
                   <h1 className='text-3xl lg:text-4xl mb-4'>
                      {title || name} ({year})
                   </h1>
@@ -91,7 +91,7 @@ const OverviewCast = ({ movie, cast }: Props) => {
                </div>
 
                {/* Cast Section */}
-               <div className='py-8'>
+               <div className='pt-8'>
                   <h2 className='text-xl lg:text-3xl mb-4'>Cast</h2>
                   <div className='flex flex-wrap gap-2'>
                      {cast.map((member) => (

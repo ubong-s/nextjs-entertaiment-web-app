@@ -11,6 +11,8 @@ import {
 import { fetchMedia, fetchSearch } from '../redux/features/home/homeSlice';
 import { useAppDispatch } from '../redux/hooks';
 import { RootState } from '../redux/store';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 
 const Home: NextPage = (props) => {
    const dispatch = useAppDispatch();
@@ -34,7 +36,12 @@ const Home: NextPage = (props) => {
    }, [searchMovies]);
 
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title='Home' />
          <SearchComponent
             name='movies/tv series'
@@ -56,7 +63,7 @@ const Home: NextPage = (props) => {
                <MoviesList items={recommended} title='Recommended for you' />
             </>
          )}
-      </>
+      </motion.div>
    );
 };
 

@@ -39,6 +39,7 @@ const Trending: React.FC<Props> = ({ trending }) => {
                      media_type,
                   } = item;
                   const bookmarked = bookmarks.find((item) => item.id === id);
+                  const slug = media_type === 'movie' ? 'movies' : media_type;
 
                   return (
                      <article className='card w-full' key={id}>
@@ -60,7 +61,7 @@ const Trending: React.FC<Props> = ({ trending }) => {
                               />
                            </svg>
                         </button>
-                        <Link href='/'>
+                        <Link href={`/${slug}/${id}`}>
                            <a>
                               <Image
                                  src={

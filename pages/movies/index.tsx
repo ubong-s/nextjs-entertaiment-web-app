@@ -5,6 +5,8 @@ import { fetchMovies } from '../../redux/features/movies/moviesSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { SearchComponent, Seo, MoviesList } from '../../components';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../animations';
 
 const TV: NextPage = () => {
    const dispatch = useAppDispatch();
@@ -23,7 +25,12 @@ const TV: NextPage = () => {
    }, [movieInput]);
 
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title='Movies' />
          <SearchComponent
             name='movies'
@@ -32,7 +39,7 @@ const TV: NextPage = () => {
             changeHandler={handleChange}
          />
          <MoviesList items={movies} title='Movies' searchInput={movieInput} />
-      </>
+      </motion.div>
    );
 };
 

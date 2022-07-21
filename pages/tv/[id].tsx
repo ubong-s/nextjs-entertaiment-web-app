@@ -1,12 +1,19 @@
 import { OverviewCast, Seo } from '../../components';
 import { TVPageProps } from '../../types';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../animations';
 
 const SingleTVPage: React.FC<TVPageProps> = ({ show, cast }) => {
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title={show.name} />
          <OverviewCast movie={show} cast={cast} />
-      </>
+      </motion.div>
    );
 };
 

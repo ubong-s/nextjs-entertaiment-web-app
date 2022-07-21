@@ -1,12 +1,19 @@
 import { OverviewCast, Seo } from '../../components';
 import { MoviePageProps } from '../../types';
+import { motion } from 'framer-motion';
+import { fadeIn } from '../../animations';
 
 const SingleMoviePage: React.FC<MoviePageProps> = ({ movie, cast }) => {
    return (
-      <>
+      <motion.div
+         variants={fadeIn}
+         initial='initial'
+         animate='animate'
+         exit='exit'
+      >
          <Seo title={movie.title} />
          <OverviewCast movie={movie} cast={cast} />
-      </>
+      </motion.div>
    );
 };
 
