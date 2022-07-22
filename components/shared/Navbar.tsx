@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { toggleUserModal } from '../../redux/features/user/userSlice';
+import { useAppDispatch } from '../../redux/hooks';
 
 const Navbar = () => {
    const router = useRouter();
+   const dispatch = useAppDispatch();
 
    return (
       <div className='py-6 bg-themeBlueDark lg:px-6 lg:py-8 lg:rounded-2xl lg:h-90vh lg:my-8 lg:sticky lg:top-8'>
@@ -95,8 +98,13 @@ const Navbar = () => {
                   </li>
                </ul>
             </div>
-            <div className='lg:grid lg:items-end lg:h-full'>
-               <img src='/assets/image-avatar.png' alt='' className='w-8' />
+            <div className='lg:grid lg:items-end lg:h-full '>
+               <img
+                  src='/assets/image-ubong.jpg'
+                  alt=''
+                  className='w-8 rounded-full cursor-pointer'
+                  onClick={() => dispatch(toggleUserModal())}
+               />
             </div>
          </div>
       </div>

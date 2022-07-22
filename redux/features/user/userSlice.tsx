@@ -12,8 +12,9 @@ const getLocalStorage = () => {
 
 // Define the initial state using that type
 const initialState: UserState = {
-   user: 'random user',
+   user: 'Ubongy',
    bookmarks: getLocalStorage() || [],
+   userModal: false,
 };
 
 export const userSlice = createSlice({
@@ -34,9 +35,16 @@ export const userSlice = createSlice({
             state.bookmarks = [...state.bookmarks, action.payload];
          }
       },
+      toggleUserModal: (state) => {
+         state.userModal = !state.userModal;
+      },
+      closeUserModal: (state) => {
+         state.userModal = false;
+      },
    },
 });
 
-export const { updateBookmarks } = userSlice.actions;
+export const { updateBookmarks, toggleUserModal, closeUserModal } =
+   userSlice.actions;
 
 export default userSlice.reducer;

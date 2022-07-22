@@ -17,6 +17,7 @@ export interface TVState {
 export interface UserState {
    user: string;
    bookmarks: Bookmark[];
+   userModal: boolean;
 }
 
 export interface Bookmark {

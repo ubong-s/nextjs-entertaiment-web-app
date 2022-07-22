@@ -156,3 +156,15 @@ a {
    }
 }
 /* Homepage Slider End */
+
+.modal {
+   @apply fixed left-0 top-0 w-full h-full bg-themeBlack bg-opacity-70 -z-10 flex items-center justify-center scale-0 opacity-0 transition-all;
+}
+
+.modal.active {
+   @apply z-20 scale-100 opacity-100;
+}
+
+.modal-link {
+   @apply text-themeRed underline transition-colors hover:text-white text-2xl;
+}
