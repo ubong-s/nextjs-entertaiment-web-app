@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { updateBookmarks } from '../../redux/features/user/userSlice';
 import { useAppDispatch } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
-import { SingleMedia } from '../../types';
+import { Bookmark, SingleMedia } from '../../types';
 
 interface Props {
-   item: SingleMedia;
+   item: SingleMedia | Bookmark;
 }
 
 const MovieCard: React.FC<Props> = ({ item }) => {
@@ -25,11 +25,21 @@ const MovieCard: React.FC<Props> = ({ item }) => {
    const dispatch = useAppDispatch();
    const { bookmarks } = useSelector((state: RootState) => state.user);
    const handleBookmarks = () => {
-      dispatch(updateBookmarks(item));
+      dispatch(
+         updateBookmarks({
+            id,
+            name,
+            title,
+            backdrop_path,
+            poster_path,
+            media_type,
+            release_date,
+            first_air_date,
+         })
+      );
    };
 
    const bookmarked = bookmarks.find((item) => item.id === id);
-
    const slug = media_type === 'movie' ? 'movies' : media_type;
 
    return (
@@ -48,22 +58,38 @@ const MovieCard: React.FC<Props> = ({ item }) => {
                />
             </svg>
          </button>
+
          <Link href={`/${slug}/${id}`}>
             <a>
-               <Image
-                  src={
-                     backdrop_path
-                        ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
-                        : poster_path
-                        ? `https://image.tmdb.org/t/p/original/${poster_path}`
-                        : '/assets/placeholder-image.png'
-                  }
-                  alt={name || title}
-                  width='200'
-                  height='135'
-                  layout='responsive'
-                  className='card_image'
-               />
+               <div className='card_image'>
+                  <Image
+                     src={
+                        backdrop_path
+                           ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
+                           : poster_path
+                           ? `https://image.tmdb.org/t/p/original/${poster_path}`
+                           : '/assets/placeholder-image.png'
+                     }
+                     alt={name || title}
+                     width='200'
+                     height='135'
+                     layout='responsive'
+                     className='-z-10'
+                  />
+                  <button title='view btn' className='view-btn'>
+                     <svg
+                        width='30'
+                        height='30'
+                        xmlns='http://www.w3.org/2000/svg'
+                     >
+                        <path
+                           d='M15 0C6.713 0 0 6.713 0 15c0 8.288 6.713 15 15 15 8.288 0 15-6.712 15-15 0-8.287-6.712-15-15-15Zm-3 21V8l9 6.5-9 6.5Z'
+                           fill='#FFF'
+                        />
+                     </svg>
+                     View
+                  </button>
+               </div>
                <p className='card_info'>
                   <span>
                      {first_air_date?.substring(0, 4) ||

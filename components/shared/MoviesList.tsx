@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { SingleMedia } from '../../types';
+import { Bookmark, SingleMedia } from '../../types';
 import MovieCard from '../shared/MovieCard';
 import PageTitle from './PageTitle';
 
 interface Props {
-   items: SingleMedia[];
+   items: SingleMedia[] | Bookmark[];
    title: string;
    searchInput?: string;
    bookEmptyAlert?: boolean;

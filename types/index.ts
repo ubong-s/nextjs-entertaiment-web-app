@@ -16,7 +16,18 @@ export interface TVState {
 
 export interface UserState {
    user: string;
-   bookmarks: SingleMedia[];
+   bookmarks: Bookmark[];
+}
+
+export interface Bookmark {
+   id: number;
+   name: string | '';
+   title: string | '';
+   backdrop_path: string;
+   poster_path: string;
+   media_type: string;
+   release_date: string | '';
+   first_air_date: string | '';
 }
 
 export interface MoviesState {
@@ -65,11 +76,13 @@ export interface SingleCastProps {
 export interface MoviePageProps {
    movie: MovieSingle;
    cast: SingleCastProps[];
+   similar: SingleMedia[];
 }
 
 export interface TVPageProps {
    show: MovieSingle;
    cast: SingleCastProps[];
+   similar: SingleMedia[];
 }
 
 interface Genre {

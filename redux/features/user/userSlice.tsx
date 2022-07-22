@@ -4,7 +4,7 @@ import { UserState, SingleMedia } from '../../../types';
 const getLocalStorage = () => {
    if (typeof window !== 'undefined') {
       const bookmarksJson = localStorage.getItem('bookmarks');
-      let bookmarks = bookmarksJson !== null ? JSON.parse(bookmarksJson) : [];
+      let bookmarks = bookmarksJson !== null && JSON.parse(bookmarksJson);
 
       return bookmarks;
    }
@@ -13,7 +13,7 @@ const getLocalStorage = () => {
 // Define the initial state using that type
 const initialState: UserState = {
    user: 'random user',
-   bookmarks: getLocalStorage(),
+   bookmarks: getLocalStorage() || [],
 };
 
 export const userSlice = createSlice({

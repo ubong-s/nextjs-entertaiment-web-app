@@ -88,8 +88,17 @@ a {
    @apply relative transition-all;
 }
 
+.view-btn {
+   background-color: rgba(255, 255, 255, 0.3);
+   @apply absolute flex items-center gap-3 left-1/2 top-1/2 rounded-3xl p-2 pr-5 -translate-x-1/2 -translate-y-1/2 z-10 opacity-0 transition-opacity;
+}
+
 .card_image {
-   @apply rounded-lg overflow-hidden;
+   @apply rounded-lg overflow-hidden relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black after:opacity-20;
+}
+
+.card_image:hover .view-btn {
+   @apply opacity-100;
 }
 
 .card_info {
@@ -111,6 +120,11 @@ a {
 .bookmark-btn {
    background-color: rgba(0, 0, 0, 0.5);
    @apply absolute right-5 top-5 z-10 rounded-full p-2;
+}
+
+.bookmark-btn-alt {
+   background-color: rgba(0, 0, 0, 0.85);
+   @apply absolute right-8 top-8 z-10 rounded-full p-2 scale-125 lg:scale-150;
 }
 
 /* Homepage Slider Start */

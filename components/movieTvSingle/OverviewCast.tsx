@@ -1,18 +1,30 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { updateBookmarks } from '../../redux/features/user/userSlice';
 import { useAppDispatch } from '../../redux/hooks';
 import { RootState } from '../../redux/store';
-import { MovieSingle, SingleCastProps } from '../../types';
+import {
+   Bookmark,
+   MovieSingle,
+   SingleCastProps,
+   SingleMedia,
+} from '../../types';
 
 interface Props {
    movie: MovieSingle;
    cast: SingleCastProps[];
+   media_type: string;
 }
 
-const OverviewCast = ({ movie, cast }: Props) => {
+const OverviewCast = ({ movie, cast, media_type }: Props) => {
+   const dispatch = useAppDispatch();
+   const [bookmarked, setBookmarked] = useState<Bookmark | undefined>(
+      undefined
+   );
+   const { bookmarks } = useSelector((state: RootState) => state.user);
    const {
+      id,
       backdrop_path,
       genres,
       first_air_date,
@@ -28,10 +40,50 @@ const OverviewCast = ({ movie, cast }: Props) => {
    const year =
       release_date?.substring(0, 4) || first_air_date?.substring(0, 4);
 
+   const checkBookmarked = () => {
+      const result = bookmarks.find((item) => item.id === id);
+
+      setBookmarked(result);
+   };
+
+   useEffect(() => {
+      checkBookmarked();
+      // eslint-disable-next-line
+   }, [bookmarks]);
+
+   const handleBookmarks = () => {
+      dispatch(
+         updateBookmarks({
+            id,
+            name,
+            title,
+            backdrop_path,
+            poster_path,
+            media_type,
+            release_date,
+            first_air_date,
+         })
+      );
+   };
+
    return (
       <div>
          {/* Mobile Image */}
-         <div className='lg:hidden'>
+         <div className='lg:hidden relative'>
+            <button
+               title='bookmark btn'
+               className='bookmark-btn-alt '
+               onClick={handleBookmarks}
+            >
+               <svg width='12' height='14' xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                     d='m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z'
+                     stroke='#FFF'
+                     strokeWidth='1.5'
+                     fill={bookmarked ? '#fff' : 'none'}
+                  />
+               </svg>
+            </button>
             <Image
                src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                alt={title || name}
@@ -44,6 +96,24 @@ const OverviewCast = ({ movie, cast }: Props) => {
          <div className='container grid gap-10 lg:grid-cols-3 lg:items-start py-12 lg:py-20 relative'>
             {/* Desktop image */}
             <div className='hidden lg:block col-span-1 sticky top-20 object-cover'>
+               <button
+                  title='bookmark btn'
+                  className='bookmark-btn-alt '
+                  onClick={handleBookmarks}
+               >
+                  <svg
+                     width='12'
+                     height='14'
+                     xmlns='http://www.w3.org/2000/svg'
+                  >
+                     <path
+                        d='m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z'
+                        stroke='#FFF'
+                        strokeWidth='1.5'
+                        fill={bookmarked ? '#fff' : 'none'}
+                     />
+                  </svg>
+               </button>
                <Image
                   src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                   alt={title || name}
@@ -57,8 +127,26 @@ const OverviewCast = ({ movie, cast }: Props) => {
             {/* Overview Section */}
             <div className='col-span-2 '>
                <div className='flex flex-col gap-5 items-start'>
-                  <h1 className='text-3xl lg:text-4xl mb-4'>
-                     {title || name} ({year})
+                  <h1 className='text-3xl lg:text-4xl mb-4 flex items-center gap-4'>
+                     {title || name} ({year}){' '}
+                     <button
+                        title='bookmark btn'
+                        className='scale-125 lg:scale-150'
+                        onClick={handleBookmarks}
+                     >
+                        <svg
+                           width='12'
+                           height='14'
+                           xmlns='http://www.w3.org/2000/svg'
+                        >
+                           <path
+                              d='m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z'
+                              stroke='#FFF'
+                              strokeWidth='1.5'
+                              fill={bookmarked ? '#fff' : 'none'}
+                           />
+                        </svg>
+                     </button>
                   </h1>
                   {tagline && (
                      <p className='italic text-xl lg:text-2xl'>

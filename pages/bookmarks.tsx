@@ -2,19 +2,17 @@ import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MoviesList, SearchComponent, Seo } from '../components';
-import { useAppDispatch } from '../redux/hooks';
 import { RootState } from '../redux/store';
-import { SingleMedia } from '../types';
+import { Bookmark } from '../types';
 import { motion } from 'framer-motion';
 import { fadeIn } from '../animations';
 
 const Bookmarks: NextPage = () => {
-   const dispatch = useAppDispatch();
    const { bookmarks } = useSelector((state: RootState) => state.user);
    const [searchValue, setSearchValue] = useState('');
-   const [searchResults, setSearchResults] = useState<SingleMedia[]>([]);
-   const [bookmarkedMovies, setbookmarkedMovies] = useState<SingleMedia[]>([]);
-   const [bookmarkedShows, setbookmarkedShows] = useState<SingleMedia[]>([]);
+   const [searchResults, setSearchResults] = useState<Bookmark[]>([]);
+   const [bookmarkedMovies, setbookmarkedMovies] = useState<Bookmark[]>([]);
+   const [bookmarkedShows, setbookmarkedShows] = useState<Bookmark[]>([]);
 
    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       setSearchValue(e.target.value);
@@ -41,7 +39,7 @@ const Bookmarks: NextPage = () => {
    useEffect(() => {
       formatMedia();
       // eslint-disable-next-line
-   }, []);
+   }, [bookmarks]);
 
    useEffect(() => {
       fetchSearch();
