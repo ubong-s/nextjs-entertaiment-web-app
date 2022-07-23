@@ -49,7 +49,7 @@ const OverviewCast = ({ movie, cast, media_type }: Props) => {
    useEffect(() => {
       checkBookmarked();
       // eslint-disable-next-line
-   }, [bookmarks]);
+   }, [bookmarks, id]);
 
    const handleBookmarks = () => {
       dispatch(

@@ -101,7 +101,7 @@ const Trending: React.FC<Props> = ({ trending }) => {
                                  </button>
                               </div>
 
-                              <div className='absolute bottom-8 left-8'>
+                              <div className='absolute bottom-0 left-0 p-8'>
                                  <p className='card_info'>
                                     <span>
                                        {first_air_date?.substring(0, 4) ||
@@ -126,7 +126,7 @@ const Trending: React.FC<Props> = ({ trending }) => {
                                        </span>
                                     </span>
                                  </p>
-                                 <h4>{name || title}</h4>
+                                 <h4 className='larger'>{name || title}</h4>
                               </div>
                            </a>
                         </Link>

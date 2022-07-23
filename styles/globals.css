@@ -117,6 +117,10 @@ a {
    @apply text-lg;
 }
 
+.card h4.larger {
+   @apply text-2xl lg:text-3xl;
+}
+
 .bookmark-btn {
    background-color: rgba(0, 0, 0, 0.5);
    @apply absolute right-5 top-5 z-10 rounded-full p-2;
