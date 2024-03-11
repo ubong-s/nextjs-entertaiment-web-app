@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image'
 import { useRouter } from 'next/router';
 import React from 'react';
 import { toggleUserModal } from '../../redux/features/user/userSlice';
@@ -13,7 +14,7 @@ const Navbar = () => {
          <div className='container flex justify-between items-center lg:flex-col lg:justify-start lg:h-full lg:gap-12'>
             <Link href='/'>
                <a>
-                  <img src='/assets/logo.svg' alt='logo' />
+                  <Image width={24} height={24} src='/assets/logo.svg' alt='logo' />
                </a>
             </Link>
             <div>
@@ -99,7 +100,7 @@ const Navbar = () => {
                </ul>
             </div>
             <div className='lg:grid lg:items-end lg:h-full '>
-               <img
+               <Image width={24} height={24}
                   src='/assets/image-ubong.jpg'
                   alt=''
                   className='w-8 rounded-full cursor-pointer'
